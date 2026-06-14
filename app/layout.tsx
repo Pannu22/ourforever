@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
-import { SITE_URL } from '@/lib/events'
+import { COUPLE, SITE_URL } from '@/lib/events'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -25,19 +25,22 @@ const inter = Inter({
   display: 'swap',
 })
 
+const title = `${COUPLE.bride} & ${COUPLE.groom} — Our Forever`
+const description = 'Join us to celebrate our wedding — 16–18 November 2026'
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Simran & Ravinder — Our Forever',
-  description: 'Join us to celebrate our wedding — 16–18 November 2026',
+  title,
+  description,
   openGraph: {
-    title: 'Simran & Ravinder — Our Forever',
-    description: 'Join us to celebrate our wedding — 16–18 November 2026',
+    title,
+    description,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Simran & Ravinder — Our Forever',
-    description: 'Join us to celebrate our wedding — 16–18 November 2026',
+    title,
+    description,
   },
 }
 

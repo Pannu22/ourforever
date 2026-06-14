@@ -1,10 +1,10 @@
 // UPDATE: Replace bride, groom, family names, venues before publishing
 export const COUPLE = {
-  bride: 'Simran',
-  groom: 'Ravinder',
-  brideFamily: 'The Kaur Family',
-  groomFamily: 'The Singh Family',
-  monogram: 'S & R',
+  bride: 'Harpreet Kaur',
+  groom: 'Narpinder Singh',
+  brideFamily: 'The Dhillon Family',
+  groomFamily: 'The Pannu Family',
+  monogram: 'H & N',
 }
 
 export type WeddingEvent = {
@@ -25,7 +25,7 @@ export const EVENTS: WeddingEvent[] = [
     subtitle: 'Ceremony',
     displayDate: '16 November 2026',
     displayTime: '11:00 AM',
-    isoDate: '2026-11-16T11:00:00',
+    isoDate: '2026-11-16T11:00:00+05:30',
     venue: 'Venue, City', // UPDATE
     description: 'Begin our journey together with blessings, gifts, and boundless joy shared with those we love.',
   },
@@ -35,7 +35,7 @@ export const EVENTS: WeddingEvent[] = [
     subtitle: 'Celebration',
     displayDate: '16 November 2026',
     displayTime: '7:00 PM',
-    isoDate: '2026-11-16T19:00:00',
+    isoDate: '2026-11-16T19:00:00+05:30',
     venue: 'Venue, City', // UPDATE
     description: 'Dance the night away as we celebrate love, music, and the beautiful memories ahead.',
   },
@@ -45,7 +45,7 @@ export const EVENTS: WeddingEvent[] = [
     subtitle: 'Night of Joy',
     displayDate: '17 November 2026',
     displayTime: '8:00 PM',
-    isoDate: '2026-11-17T20:00:00',
+    isoDate: '2026-11-17T20:00:00+05:30',
     venue: 'Venue, City', // UPDATE
     description: 'An evening of song, laughter, and cherished traditions shared with our dearest ones.',
   },
@@ -55,13 +55,16 @@ export const EVENTS: WeddingEvent[] = [
     subtitle: 'The Wedding',
     displayDate: '18 November 2026',
     displayTime: '11:00 AM',
-    isoDate: '2026-11-18T11:00:00',
+    isoDate: '2026-11-18T11:00:00+05:30',
     venue: 'Venue, City', // UPDATE
     description: 'In the holy presence of the Guru Granth Sahib, we shall take our sacred vows.',
   },
 ]
 
-export const WEDDING_DATE_ISO = '2026-11-18T11:00:00'
+// IST (+05:30) offset makes this an absolute instant, so the countdown is
+// identical for guests in every timezone. UPDATE the offset if the wedding
+// is not in India.
+export const WEDDING_DATE_ISO = '2026-11-18T11:00:00+05:30'
 
 // Absolute site URL — required so share-card (OG) images unfurl on
 // WhatsApp/iMessage. Set NEXT_PUBLIC_SITE_URL in Vercel; falls back to

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import EnvelopeScene from '@/components/EnvelopeScene'
@@ -8,7 +8,7 @@ import HeroCard from '@/components/HeroCard'
 import EventsTimeline from '@/components/EventsTimeline'
 import Countdown from '@/components/Countdown'
 import RSVPForm from '@/components/RSVPForm'
-import AudioController from '@/components/AudioController'
+import AudioController, { type AudioHandle } from '@/components/AudioController'
 import Petals from '@/components/Petals'
 import { COUPLE } from '@/lib/events'
 
@@ -28,17 +28,22 @@ function useGuestName(): string | undefined {
 function Invitation() {
   const [opened, setOpened] = useState(false)
   const guestName = useGuestName()
+  const audioRef = useRef<AudioHandle>(null)
 
   return (
     <main>
       <AnimatePresence>
         {!opened && (
-          <EnvelopeScene key="envelope" onOpen={() => setOpened(true)} />
+          <EnvelopeScene
+            key="envelope"
+            onOpen={() => setOpened(true)}
+            onTap={() => audioRef.current?.unlock()}
+          />
         )}
       </AnimatePresence>
 
       {/* Ambient layers — active only after the envelope opens */}
-      <AudioController play={opened} />
+      <AudioController ref={audioRef} play={opened} />
       {opened && <Petals />}
 
       <AnimatePresence>

@@ -206,10 +206,15 @@ function MiniCard() {
       >
         You Are Invited
       </p>
-      <h2 className="font-playfair text-cream leading-tight" style={{ fontSize: 28, fontWeight: 400 }}>
-        {COUPLE.bride}
-        <span style={{ color: '#C9A96E', margin: '0 8px', fontStyle: 'italic' }}>&</span>
-        {COUPLE.groom}
+      <h2 className="font-playfair text-cream leading-tight" style={{ fontSize: 26, fontWeight: 400 }}>
+        <span className="block whitespace-nowrap">{COUPLE.bride}</span>
+        <span
+          className="block font-cormorant italic my-1"
+          style={{ color: '#C9A96E', fontSize: 18, fontWeight: 300 }}
+        >
+          &amp;
+        </span>
+        <span className="block whitespace-nowrap">{COUPLE.groom}</span>
       </h2>
       <div className="mt-4 flex items-center justify-center gap-3">
         <div className="h-px w-10" style={{ background: 'linear-gradient(to right, transparent, rgba(201,169,110,0.4))' }} />
@@ -222,11 +227,19 @@ function MiniCard() {
   )
 }
 
-export default function EnvelopeScene({ onOpen }: { onOpen: () => void }) {
+export default function EnvelopeScene({
+  onOpen,
+  onTap,
+}: {
+  onOpen: () => void
+  onTap?: () => void
+}) {
   const [phase, setPhase] = useState<Phase>('idle')
 
   const handleClick = () => {
     if (phase !== 'idle') return
+    // Unlock audio synchronously within the tap, before the timed reveal.
+    onTap?.()
     setPhase('breaking')
     setTimeout(() => setPhase('rising'), 550)
     setTimeout(() => setPhase('fading'), 1900)
@@ -306,10 +319,21 @@ export default function EnvelopeScene({ onOpen }: { onOpen: () => void }) {
               )}
             </AnimatePresence>
 
-            {/* The envelope */}
-            <div
-              className={phase === 'idle' ? 'cursor-pointer' : 'cursor-default'}
+            {/* The envelope — a real <button> so iOS Safari reliably fires
+                the tap (plain divs don't), with a padded hit-area. */}
+            <button
+              type="button"
               onClick={handleClick}
+              disabled={phase !== 'idle'}
+              aria-label="Open the invitation"
+              className={phase === 'idle' ? 'cursor-pointer' : 'cursor-default'}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 24,
+                WebkitTapHighlightColor: 'transparent',
+                touchAction: 'manipulation',
+              }}
             >
               <motion.div
                 animate={
@@ -322,7 +346,7 @@ export default function EnvelopeScene({ onOpen }: { onOpen: () => void }) {
               >
                 <EnvelopeBody phase={phase} />
               </motion.div>
-            </div>
+            </button>
           </div>
 
           {/* Tap hint */}

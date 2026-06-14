@@ -63,3 +63,43 @@ body {
   0% { transform: translateY(0px) scale(1); opacity: 0.6; }
   100% { transform: translateY(-120px) scale(0.4); opacity: 0; }
 }
+
+/* Falling petals — pure CSS so they run on the GPU compositor and stay
+   smooth during scroll on mobile (no main-thread jank). Two nested layers:
+   the outer falls vertically, the inner sways + rotates like a real petal. */
+.petal-fall {
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+.petal-sway {
+  animation-name: petal-sway;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+@keyframes petal-fall {
+  0% { transform: translate3d(0, -12vh, 0); opacity: 0; }
+  12% { opacity: 0.75; }
+  88% { opacity: 0.75; }
+  100% { transform: translate3d(0, 112vh, 0); opacity: 0; }
+}
+
+@keyframes petal-sway {
+  from {
+    transform: translateX(calc(var(--drift) * -1)) rotate(calc(var(--spin) * -1));
+  }
+  to {
+    transform: translateX(var(--drift)) rotate(var(--spin));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal-fall,
+  .petal-sway {
+    animation: none;
+  }
+}

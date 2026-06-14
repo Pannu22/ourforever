@@ -1,17 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 
 type Petal = {
   id: number
   left: number
   size: number
-  delay: number
-  duration: number
-  drift: number
-  rotate: number
   hue: string
+  fall: number // vertical fall duration (s)
+  sway: number // side-to-side flutter duration (s)
+  fallDelay: number // negative → start mid-cycle so the screen fills at once
+  swayDelay: number
+  drift: number // horizontal sway amplitude (px)
+  spin: number // rotation amplitude (deg)
 }
 
 // Warm marigold / gold tones for a Sikh-wedding feel.
@@ -45,44 +46,56 @@ function PetalShape({ size, hue }: { size: number; hue: string }) {
 export default function Petals() {
   const [petals, setPetals] = useState<Petal[]>([])
 
+  // Generated on the client (Math.random) to avoid hydration mismatch.
   useEffect(() => {
     setPetals(
-      Array.from({ length: 14 }, (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        size: Math.random() * 12 + 10,
-        delay: Math.random() * 12,
-        duration: Math.random() * 8 + 11,
-        drift: (Math.random() - 0.5) * 160,
-        rotate: Math.random() * 360,
-        hue: HUES[i % HUES.length],
-      }))
+      Array.from({ length: 14 }, (_, i) => {
+        const fall = Math.random() * 8 + 11 // 11–19s
+        const sway = Math.random() * 2.5 + 3 // 3–5.5s
+        return {
+          id: i,
+          left: Math.random() * 100,
+          size: Math.random() * 12 + 10,
+          hue: HUES[i % HUES.length],
+          fall,
+          sway,
+          fallDelay: -(Math.random() * fall),
+          swayDelay: -(Math.random() * sway),
+          drift: Math.random() * 55 + 25, // 25–80px
+          spin: Math.random() * 70 + 25, // 25–95deg
+        }
+      })
     )
   }, [])
 
   return (
-    <div className="fixed inset-0 z-30 overflow-hidden pointer-events-none">
+    <div
+      className="fixed inset-0 z-30 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
       {petals.map((p) => (
-        <motion.div
+        <div
           key={p.id}
-          className="absolute"
-          style={{ left: `${p.left}%`, top: -40 }}
-          initial={{ y: -40, x: 0, opacity: 0, rotate: p.rotate }}
-          animate={{
-            y: '105vh',
-            x: [0, p.drift * 0.5, p.drift],
-            opacity: [0, 0.7, 0.7, 0],
-            rotate: p.rotate + 220,
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: 'linear',
+          className="petal-fall absolute"
+          style={{
+            left: `${p.left}%`,
+            top: 0,
+            animationDuration: `${p.fall}s`,
+            animationDelay: `${p.fallDelay}s`,
           }}
         >
-          <PetalShape size={p.size} hue={p.hue} />
-        </motion.div>
+          <div
+            className="petal-sway"
+            style={{
+              animationDuration: `${p.sway}s`,
+              animationDelay: `${p.swayDelay}s`,
+              ['--drift' as string]: `${p.drift}px`,
+              ['--spin' as string]: `${p.spin}deg`,
+            }}
+          >
+            <PetalShape size={p.size} hue={p.hue} />
+          </div>
+        </div>
       ))}
     </div>
   )
