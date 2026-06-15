@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { COUPLE } from '@/lib/events'
+import { COUPLE, WEDDING_DATE_RANGE } from '@/lib/events'
 
 // WhatsApp / iMessage / social unfurl card.
 // A custom Playfair .ttf can be loaded here later for exact brand type;
@@ -100,7 +100,7 @@ export default function OgImage() {
             letterSpacing: 2,
           }}
         >
-          16 — 18 November 2026
+          {WEDDING_DATE_RANGE}
         </div>
       </div>
     ),

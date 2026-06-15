@@ -115,8 +115,8 @@ const AudioController = forwardRef<AudioHandle, { play: boolean }>(
               style={{
                 width: 48,
                 height: 48,
-                border: '1px solid rgba(201,169,110,0.3)',
-                background: 'rgba(10,10,10,0.5)',
+                border: '1px solid rgba(var(--gold-rgb),0.3)',
+                background: 'rgba(var(--bg-rgb),0.5)',
               }}
             >
               {/* Animated sound bars — driven by real play/pause state */}
@@ -125,7 +125,7 @@ const AudioController = forwardRef<AudioHandle, { play: boolean }>(
                   <motion.span
                     key={i}
                     className="w-[2px] rounded-full"
-                    style={{ background: '#C9A96E' }}
+                    style={{ background: 'var(--gold)' }}
                     animate={
                       paused
                         ? { height: 3 }

@@ -32,7 +32,7 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
         {/* Dot */}
         <motion.div
           className="w-3 h-3 rounded-full border-2 flex-shrink-0"
-          style={{ borderColor: '#C9A96E', background: '#0A0A0A' }}
+          style={{ borderColor: 'var(--gold)', background: 'rgb(var(--bg-rgb))' }}
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -43,7 +43,7 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
           <motion.div
             className="w-px mt-2 flex-1 min-h-[120px]"
             style={{
-              background: 'linear-gradient(to bottom, rgba(201,169,110,0.3), rgba(201,169,110,0.05))',
+              background: 'linear-gradient(to bottom, rgba(var(--gold-rgb),0.3), rgba(var(--gold-rgb),0.05))',
               scaleY: lineScale,
               transformOrigin: 'top',
             }}
@@ -56,16 +56,16 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
         <div
           className="border rounded-sm p-7 md:p-10 relative overflow-hidden group transition-all duration-500"
           style={{
-            borderColor: 'rgba(201,169,110,0.12)',
-            background: 'linear-gradient(135deg, rgba(28,24,18,0.8) 0%, rgba(10,10,10,0.8) 100%)',
+            borderColor: 'rgba(var(--gold-rgb),0.12)',
+            background: 'linear-gradient(135deg, rgba(var(--panel-rgb),0.8) 0%, rgba(var(--bg-rgb),0.8) 100%)',
           }}
           onMouseEnter={(e) => {
             ;(e.currentTarget as HTMLDivElement).style.borderColor =
-              'rgba(201,169,110,0.3)'
+              'rgba(var(--gold-rgb),0.3)'
           }}
           onMouseLeave={(e) => {
             ;(e.currentTarget as HTMLDivElement).style.borderColor =
-              'rgba(201,169,110,0.12)'
+              'rgba(var(--gold-rgb),0.12)'
           }}
         >
           {/* Hover glow */}
@@ -73,7 +73,7 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
               background:
-                'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,169,110,0.05) 0%, transparent 70%)',
+                'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(var(--gold-rgb),0.05) 0%, transparent 70%)',
             }}
           />
 
@@ -84,13 +84,13 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
                 <div className="flex items-center gap-3 mb-2">
                   <span
                     className="text-lg"
-                    style={{ color: 'rgba(201,169,110,0.6)' }}
+                    style={{ color: 'rgba(var(--gold-rgb),0.6)' }}
                   >
                     {EVENT_ICONS[event.id]}
                   </span>
                   <span
                     className="font-sans text-[10px] tracking-[0.4em] uppercase"
-                    style={{ color: 'rgba(201,169,110,0.55)' }}
+                    style={{ color: 'rgba(var(--gold-rgb),0.55)' }}
                   >
                     {event.subtitle}
                   </span>
@@ -112,7 +112,7 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
                 </p>
                 <p
                   className="font-playfair mt-1"
-                  style={{ fontSize: 20, color: '#C9A96E', fontWeight: 400 }}
+                  style={{ fontSize: 20, color: 'var(--gold)', fontWeight: 400 }}
                 >
                   {event.displayTime}
                 </p>
@@ -126,7 +126,7 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
               {event.description}
             </p>
 
-            <div className="flex items-center gap-2" style={{ color: 'rgba(250,247,242,0.25)' }}>
+            <div className="flex items-center gap-2" style={{ color: 'rgba(var(--text-rgb),0.25)' }}>
               <svg
                 width="12"
                 height="12"
@@ -162,7 +162,7 @@ export default function EventsTimeline() {
         >
           <p
             className="font-sans text-[10px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: 'rgba(201,169,110,0.55)' }}
+            style={{ color: 'rgba(var(--gold-rgb),0.55)' }}
           >
             Our Celebrations
           </p>

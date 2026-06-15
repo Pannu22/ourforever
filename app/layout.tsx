@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
-import { COUPLE, SITE_URL } from '@/lib/events'
+import { COUPLE, SITE_URL, WEDDING_DATE_RANGE } from '@/lib/events'
+import { DEFAULT_THEME } from '@/lib/themes'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -26,7 +27,7 @@ const inter = Inter({
 })
 
 const title = `${COUPLE.bride} & ${COUPLE.groom} — Our Forever`
-const description = 'Join us to celebrate our wedding — 16–18 November 2026'
+const description = `Join us to celebrate our wedding — ${WEDDING_DATE_RANGE}`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      data-theme={DEFAULT_THEME}
       className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}
     >
       <body className="bg-ink text-cream antialiased overflow-x-hidden">

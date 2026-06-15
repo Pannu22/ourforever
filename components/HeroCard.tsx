@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { COUPLE } from '@/lib/events'
+import { COUPLE, WEDDING_DATE_RANGE } from '@/lib/events'
 
 export default function HeroCard({ guestName }: { guestName?: string }) {
   const ref = useRef<HTMLElement>(null)
@@ -20,7 +20,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
       style={{
         background:
-          'radial-gradient(ellipse 100% 80% at 50% 30%, #1d1508 0%, #0A0A0A 65%)',
+          'radial-gradient(ellipse 100% 80% at 50% 30%, rgb(var(--glow-rgb)) 0%, rgb(var(--bg-rgb)) 65%)',
       }}
     >
       {/* Large ambient glow behind names */}
@@ -33,7 +33,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
           left: '50%',
           transform: 'translate(-50%, -55%)',
           background:
-            'radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 65%)',
+            'radial-gradient(circle, rgba(var(--gold-rgb),0.08) 0%, transparent 65%)',
           filter: 'blur(60px)',
         }}
       />
@@ -51,7 +51,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
             className="font-cormorant italic mb-5"
             style={{
               fontSize: 'clamp(20px, 3vw, 30px)',
-              color: 'rgba(232,213,163,0.85)',
+              color: 'rgba(var(--gold-rgb), 0.95)',
               fontWeight: 300,
             }}
           >
@@ -65,7 +65,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
           className="font-sans text-[11px] tracking-[0.5em] uppercase mb-10"
-          style={{ color: 'rgba(201,169,110,0.55)' }}
+          style={{ color: 'rgba(var(--gold-rgb),0.55)' }}
         >
           Together with their families
         </motion.p>
@@ -90,7 +90,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
               className="block font-cormorant italic my-3"
               style={{
                 fontSize: 'clamp(28px, 5vw, 52px)',
-                color: 'rgba(201,169,110,0.75)',
+                color: 'rgba(var(--gold-rgb),0.75)',
                 fontWeight: 300,
               }}
             >
@@ -116,7 +116,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
             className="h-px w-28"
             style={{
               background:
-                'linear-gradient(to right, transparent, rgba(201,169,110,0.45))',
+                'linear-gradient(to right, transparent, rgba(var(--gold-rgb),0.45))',
             }}
           />
           <div
@@ -124,14 +124,14 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
             style={{
               width: 5,
               height: 5,
-              background: 'rgba(201,169,110,0.6)',
+              background: 'rgba(var(--gold-rgb),0.6)',
             }}
           />
           <div
             className="h-px w-28"
             style={{
               background:
-                'linear-gradient(to left, transparent, rgba(201,169,110,0.45))',
+                'linear-gradient(to left, transparent, rgba(var(--gold-rgb),0.45))',
             }}
           />
         </motion.div>
@@ -154,11 +154,11 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
           className="font-cormorant italic mt-3"
           style={{
             fontSize: 'clamp(15px, 2vw, 20px)',
-            color: 'rgba(201,169,110,0.7)',
+            color: 'rgba(var(--gold-rgb),0.7)',
             fontWeight: 300,
           }}
         >
-          16 — 18 November 2026
+          {WEDDING_DATE_RANGE}
         </motion.p>
 
         {/* Family names */}
@@ -167,14 +167,14 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 1.9 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
-          style={{ color: 'rgba(250,247,242,0.3)' }}
+          style={{ color: 'rgba(var(--text-rgb),0.3)' }}
         >
           <span className="font-sans text-[11px] tracking-[0.3em] uppercase">
             {COUPLE.brideFamily}
           </span>
           <span
             className="hidden sm:block text-xs"
-            style={{ color: 'rgba(201,169,110,0.25)' }}
+            style={{ color: 'rgba(var(--gold-rgb),0.25)' }}
           >
             ·
           </span>
@@ -194,7 +194,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
       >
         <motion.span
           className="font-sans text-[10px] tracking-[0.35em] uppercase"
-          style={{ color: 'rgba(201,169,110,0.3)' }}
+          style={{ color: 'rgba(var(--gold-rgb),0.3)' }}
           animate={{ opacity: [0.3, 0.7, 0.3] }}
           transition={{ duration: 2.5, repeat: Infinity }}
         >
@@ -204,7 +204,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
           className="w-px h-10"
           style={{
             background:
-              'linear-gradient(to bottom, rgba(201,169,110,0.4), transparent)',
+              'linear-gradient(to bottom, rgba(var(--gold-rgb),0.4), transparent)',
           }}
           animate={{ scaleY: [0.4, 1, 0.4], originY: 0 }}
           transition={{ duration: 2, repeat: Infinity }}

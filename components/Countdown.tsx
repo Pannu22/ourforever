@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { WEDDING_DATE_ISO } from '@/lib/events'
+import { WEDDING_DATE_ISO, WEDDING_EVENT } from '@/lib/events'
 
 type TimeLeft = {
   days: number
@@ -40,14 +40,14 @@ function CountUnit({ value, label }: { value: number; label: string }) {
             cx="50"
             cy="50"
             r="46"
-            stroke="rgba(201,169,110,0.1)"
+            stroke="rgba(var(--gold-rgb),0.1)"
             strokeWidth="1"
           />
           <circle
             cx="50"
             cy="50"
             r="46"
-            stroke="rgba(201,169,110,0.25)"
+            stroke="rgba(var(--gold-rgb),0.25)"
             strokeWidth="0.5"
             strokeDasharray="289"
             strokeDashoffset="100"
@@ -70,7 +70,7 @@ function CountUnit({ value, label }: { value: number; label: string }) {
       </div>
       <span
         className="font-sans text-[10px] tracking-[0.35em] uppercase"
-        style={{ color: 'rgba(201,169,110,0.45)' }}
+        style={{ color: 'rgba(var(--gold-rgb),0.45)' }}
       >
         {label}
       </span>
@@ -92,7 +92,7 @@ export default function Countdown() {
       className="py-28 px-6"
       style={{
         background:
-          'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(26,21,8,0.8) 0%, transparent 100%)',
+          'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(var(--glow-rgb),0.8) 0%, transparent 100%)',
       }}
     >
       <div className="max-w-2xl mx-auto text-center">
@@ -104,7 +104,7 @@ export default function Countdown() {
         >
           <p
             className="font-sans text-[10px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: 'rgba(201,169,110,0.55)' }}
+            style={{ color: 'rgba(var(--gold-rgb),0.55)' }}
           >
             Counting Down
           </p>
@@ -113,7 +113,7 @@ export default function Countdown() {
             style={{ fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 400 }}
           >
             Until We Say{' '}
-            <em className="font-cormorant italic" style={{ color: '#C9A96E', fontWeight: 300 }}>
+            <em className="font-cormorant italic" style={{ color: 'var(--gold)', fontWeight: 300 }}>
               I Do
             </em>
           </h2>
@@ -133,7 +133,7 @@ export default function Countdown() {
             animate={{ opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
-            18 November 2026 · Anand Karaj
+            {WEDDING_EVENT.displayDate} · {WEDDING_EVENT.name}
           </motion.p>
         </motion.div>
       </div>

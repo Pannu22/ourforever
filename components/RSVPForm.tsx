@@ -25,10 +25,10 @@ function Field({
     <div className="group">
       <label
         className="font-sans text-[10px] tracking-[0.3em] uppercase block mb-2"
-        style={{ color: 'rgba(250,247,242,0.4)' }}
+        style={{ color: 'rgba(var(--text-rgb),0.4)' }}
       >
         {label}
-        {required && <span style={{ color: 'rgba(201,169,110,0.6)' }}> *</span>}
+        {required && <span style={{ color: 'rgba(var(--gold-rgb),0.6)' }}> *</span>}
       </label>
       <input
         type={type}
@@ -37,14 +37,14 @@ function Field({
         required={required}
         placeholder={placeholder}
         className="w-full bg-transparent pb-2 text-cream/80 text-sm font-sans focus:outline-none placeholder:text-cream/15 transition-colors duration-300"
-        style={{ borderBottom: '1px solid rgba(201,169,110,0.2)' }}
+        style={{ borderBottom: '1px solid rgba(var(--gold-rgb),0.2)' }}
         onFocus={(e) =>
           ((e.target as HTMLInputElement).style.borderBottomColor =
-            'rgba(201,169,110,0.6)')
+            'rgba(var(--gold-rgb),0.6)')
         }
         onBlur={(e) =>
           ((e.target as HTMLInputElement).style.borderBottomColor =
-            'rgba(201,169,110,0.2)')
+            'rgba(var(--gold-rgb),0.2)')
         }
       />
     </div>
@@ -97,7 +97,7 @@ export default function RSVPForm() {
         >
           <p
             className="font-sans text-[10px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: 'rgba(201,169,110,0.55)' }}
+            style={{ color: 'rgba(var(--gold-rgb),0.55)' }}
           >
             Kindly Respond
           </p>
@@ -120,17 +120,17 @@ export default function RSVPForm() {
             >
               <motion.div
                 className="w-16 h-16 rounded-full border flex items-center justify-center mx-auto mb-6"
-                style={{ borderColor: 'rgba(201,169,110,0.35)' }}
+                style={{ borderColor: 'rgba(var(--gold-rgb),0.35)' }}
                 animate={{
                   boxShadow: [
-                    '0 0 0 0 rgba(201,169,110,0)',
-                    '0 0 30px 8px rgba(201,169,110,0.15)',
-                    '0 0 0 0 rgba(201,169,110,0)',
+                    '0 0 0 0 rgba(var(--gold-rgb),0)',
+                    '0 0 30px 8px rgba(var(--gold-rgb),0.15)',
+                    '0 0 0 0 rgba(var(--gold-rgb),0)',
                   ],
                 }}
                 transition={{ duration: 2.5, repeat: 2 }}
               >
-                <span style={{ color: '#C9A96E', fontSize: 22 }}>✓</span>
+                <span style={{ color: 'var(--gold)', fontSize: 22 }}>✓</span>
               </motion.div>
               <p
                 className="font-playfair text-cream mb-2"
@@ -172,7 +172,7 @@ export default function RSVPForm() {
               <div>
                 <p
                   className="font-sans text-[10px] tracking-[0.3em] uppercase mb-4"
-                  style={{ color: 'rgba(250,247,242,0.4)' }}
+                  style={{ color: 'rgba(var(--text-rgb),0.4)' }}
                 >
                   Events Attending
                 </p>
@@ -189,17 +189,17 @@ export default function RSVPForm() {
                           className="flex-shrink-0 w-4 h-4 rounded-sm border flex items-center justify-center transition-all duration-200"
                           style={{
                             borderColor: checked
-                              ? '#C9A96E'
-                              : 'rgba(201,169,110,0.25)',
+                              ? 'var(--gold)'
+                              : 'rgba(var(--gold-rgb),0.25)',
                             background: checked
-                              ? '#C9A96E'
+                              ? 'var(--gold)'
                               : 'transparent',
                           }}
                         >
                           {checked && (
                             <span
                               style={{
-                                color: '#0A0A0A',
+                                color: 'rgb(var(--bg-rgb))',
                                 fontSize: 9,
                                 fontWeight: 700,
                                 lineHeight: 1,
@@ -213,14 +213,14 @@ export default function RSVPForm() {
                           className="font-sans text-sm transition-colors duration-200"
                           style={{
                             color: checked
-                              ? 'rgba(250,247,242,0.8)'
-                              : 'rgba(250,247,242,0.45)',
+                              ? 'rgba(var(--text-rgb),0.8)'
+                              : 'rgba(var(--text-rgb),0.45)',
                           }}
                         >
                           {event.name}
                           <span
                             className="ml-2"
-                            style={{ color: 'rgba(201,169,110,0.4)', fontSize: 12 }}
+                            style={{ color: 'rgba(var(--gold-rgb),0.4)', fontSize: 12 }}
                           >
                             {event.displayDate} · {event.displayTime}
                           </span>
@@ -235,7 +235,7 @@ export default function RSVPForm() {
               <div>
                 <label
                   className="font-sans text-[10px] tracking-[0.3em] uppercase block mb-2"
-                  style={{ color: 'rgba(250,247,242,0.4)' }}
+                  style={{ color: 'rgba(var(--text-rgb),0.4)' }}
                 >
                   Message (optional)
                 </label>
@@ -247,14 +247,14 @@ export default function RSVPForm() {
                   rows={3}
                   placeholder="Leave a message for the couple…"
                   className="w-full bg-transparent border text-cream/70 text-sm font-sans px-4 py-3 rounded-sm focus:outline-none resize-none placeholder:text-cream/15 transition-colors duration-300"
-                  style={{ borderColor: 'rgba(201,169,110,0.15)' }}
+                  style={{ borderColor: 'rgba(var(--gold-rgb),0.15)' }}
                   onFocus={(e) =>
                     ((e.target as HTMLTextAreaElement).style.borderColor =
-                      'rgba(201,169,110,0.4)')
+                      'rgba(var(--gold-rgb),0.4)')
                   }
                   onBlur={(e) =>
                     ((e.target as HTMLTextAreaElement).style.borderColor =
-                      'rgba(201,169,110,0.15)')
+                      'rgba(var(--gold-rgb),0.15)')
                   }
                 />
               </div>
@@ -264,10 +264,10 @@ export default function RSVPForm() {
                 disabled={!form.name.trim() || status === 'submitting'}
                 className="w-full py-4 border font-sans text-[12px] tracking-[0.4em] uppercase transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                 style={{
-                  borderColor: 'rgba(201,169,110,0.35)',
-                  color: '#C9A96E',
+                  borderColor: 'rgba(var(--gold-rgb),0.35)',
+                  color: 'var(--gold)',
                 }}
-                whileHover={{ backgroundColor: 'rgba(201,169,110,0.07)' }}
+                whileHover={{ backgroundColor: 'rgba(var(--gold-rgb),0.07)' }}
                 whileTap={{ scale: 0.98 }}
               >
                 {status === 'submitting' ? 'Sending…' : 'Send RSVP'}

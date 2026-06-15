@@ -2,12 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens as RGB triplets so Tailwind's <alpha-value> and inline
+   rgba(var(--x), a) both work. :root is the default (dark) theme; each
+   [data-theme='<id>'] block overrides it. Themes are registered in
+   lib/themes.ts and selected at build time via NEXT_PUBLIC_THEME. */
 :root {
-  --gold: #C9A96E;
-  --gold-light: #E8D5A3;
-  --gold-dark: #A07840;
-  --ink: #0A0A0A;
-  --cream: #FAF7F2;
+  --bg-rgb: 10, 10, 10; /* #0A0A0A */
+  --panel-rgb: 28, 24, 18; /* #1C1812 — warm card */
+  --panel2-rgb: 20, 18, 16; /* #141210 */
+  --glow-rgb: 29, 21, 8; /* #1d1508 — warm radial center */
+  --text-rgb: 250, 247, 242; /* #FAF7F2 cream */
+  --gold-rgb: 201, 169, 110; /* #C9A96E */
+
+  --gold: rgb(var(--gold-rgb));
+  --gold-light: #e8d5a3;
+  --gold-dark: #a07840;
+  --ink: rgb(var(--bg-rgb));
+  --cream: rgb(var(--text-rgb));
+}
+
+[data-theme='light'] {
+  --bg-rgb: 235, 227, 213; /* muted warm sand — softer on the eyes than ivory */
+  --panel-rgb: 226, 216, 198; /* card, slightly deeper than bg */
+  --panel2-rgb: 218, 206, 185;
+  --glow-rgb: 230, 220, 201; /* gentle warm glow on sand */
+  --text-rgb: 46, 35, 22; /* deep espresso — high contrast */
+  --gold-rgb: 146, 104, 44; /* deepened antique gold for contrast */
+
+  --gold: rgb(var(--gold-rgb));
+  --gold-light: #c9a96e;
+  --gold-dark: #6e4f22;
 }
 
 * {
@@ -19,8 +43,8 @@ html {
 }
 
 body {
-  background: var(--ink);
-  color: var(--cream);
+  background: rgb(var(--bg-rgb));
+  color: rgb(var(--text-rgb));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -40,11 +64,11 @@ body {
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #C9A96E 0%,
-    #E8D5A3 30%,
-    #C9A96E 60%,
-    #A07840 80%,
-    #C9A96E 100%
+    var(--gold) 0%,
+    var(--gold-light) 30%,
+    var(--gold) 60%,
+    var(--gold-dark) 80%,
+    var(--gold) 100%
   );
   background-size: 200% auto;
   background-clip: text;

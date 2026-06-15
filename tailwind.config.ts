@@ -8,14 +8,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#0A0A0A',
-        surface: '#141410',
+        // Theme-aware: driven by CSS variables set in globals.css, so these
+        // classes follow NEXT_PUBLIC_THEME. The vars are comma-separated RGB
+        // triplets, so use legacy rgba(...) — `rgb(var() / <alpha-value>)` would
+        // emit invalid `rgb(10, 10, 10 / 1)`. <alpha-value> keeps `/opacity`.
+        ink: 'rgba(var(--bg-rgb), <alpha-value>)',
+        surface: 'rgba(var(--panel2-rgb), <alpha-value>)',
         gold: {
-          DEFAULT: '#C9A96E',
+          DEFAULT: 'rgba(var(--gold-rgb), <alpha-value>)',
           light: '#E8D5A3',
           dark: '#A07840',
         },
-        cream: '#FAF7F2',
+        cream: 'rgba(var(--text-rgb), <alpha-value>)',
       },
       fontFamily: {
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],

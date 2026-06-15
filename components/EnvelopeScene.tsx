@@ -44,7 +44,7 @@ function FloatingParticles() {
             height: p.size,
             left: `${p.left}%`,
             top: `${p.top}%`,
-            background: '#C9A96E',
+            background: 'var(--gold)',
           }}
           animate={{ y: [0, p.yOffset], opacity: [0, 0.5, 0] }}
           transition={{
@@ -85,7 +85,7 @@ function WaxSeal({ breaking }: { breaking: boolean }) {
         }
         transition={{ duration: 2.5, repeat: Infinity }}
         style={{
-          background: 'radial-gradient(circle, rgba(201,169,110,0.5) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(var(--gold-rgb),0.5) 0%, transparent 70%)',
           filter: 'blur(8px)',
         }}
       />
@@ -93,7 +93,7 @@ function WaxSeal({ breaking }: { breaking: boolean }) {
       <div
         className="relative w-full h-full rounded-full flex items-center justify-center"
         style={{
-          background: 'radial-gradient(circle at 35% 35%, #E8D5A3 0%, #C9A96E 40%, #A07840 100%)',
+          background: 'radial-gradient(circle at 35% 35%, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 100%)',
         }}
       >
         <div className="absolute inset-[4px] rounded-full border border-[#1C1812]/20" />
@@ -138,24 +138,23 @@ function EnvelopeBody({ phase }: { phase: Phase }) {
           width="339"
           height="229"
           rx="3"
-          fill="#1C1812"
-          stroke="#C9A96E"
+          style={{ fill: 'rgb(var(--panel-rgb))', stroke: 'rgb(var(--gold-rgb))' }}
           strokeWidth="0.5"
           strokeOpacity="0.25"
         />
         {/* Back bottom flap */}
-        <path d="M 0 230 L 170 132 L 340 230 Z" fill="#161210" />
+        <path d="M 0 230 L 170 132 L 340 230 Z" style={{ fill: 'rgb(var(--panel2-rgb))' }} />
         {/* Back left flap */}
-        <path d="M 0 0 L 0 230 L 170 132 Z" fill="#141110" />
+        <path d="M 0 0 L 0 230 L 170 132 Z" style={{ fill: 'rgb(var(--panel2-rgb))' }} />
         {/* Back right flap */}
-        <path d="M 340 0 L 340 230 L 170 132 Z" fill="#141110" />
+        <path d="M 340 0 L 340 230 L 170 132 Z" style={{ fill: 'rgb(var(--panel2-rgb))' }} />
         {/* Subtle fold lines */}
-        <line x1="0" y1="0" x2="170" y2="125" stroke="#C9A96E" strokeWidth="0.4" strokeOpacity="0.1" />
-        <line x1="340" y1="0" x2="170" y2="125" stroke="#C9A96E" strokeWidth="0.4" strokeOpacity="0.1" />
-        <line x1="0" y1="230" x2="170" y2="125" stroke="#C9A96E" strokeWidth="0.4" strokeOpacity="0.1" />
-        <line x1="340" y1="230" x2="170" y2="125" stroke="#C9A96E" strokeWidth="0.4" strokeOpacity="0.1" />
+        <line x1="0" y1="0" x2="170" y2="125" style={{ stroke: 'rgb(var(--gold-rgb))' }} strokeWidth="0.4" strokeOpacity="0.1" />
+        <line x1="340" y1="0" x2="170" y2="125" style={{ stroke: 'rgb(var(--gold-rgb))' }} strokeWidth="0.4" strokeOpacity="0.1" />
+        <line x1="0" y1="230" x2="170" y2="125" style={{ stroke: 'rgb(var(--gold-rgb))' }} strokeWidth="0.4" strokeOpacity="0.1" />
+        <line x1="340" y1="230" x2="170" y2="125" style={{ stroke: 'rgb(var(--gold-rgb))' }} strokeWidth="0.4" strokeOpacity="0.1" />
         {/* Inner decorative border */}
-        <rect x="10" y="10" width="320" height="210" rx="1" fill="none" stroke="#C9A96E" strokeWidth="0.3" strokeOpacity="0.12" />
+        <rect x="10" y="10" width="320" height="210" rx="1" fill="none" style={{ stroke: 'rgb(var(--gold-rgb))' }} strokeWidth="0.3" strokeOpacity="0.12" />
       </svg>
 
       {/* Top flap — animates open */}
@@ -173,8 +172,7 @@ function EnvelopeBody({ phase }: { phase: Phase }) {
         >
           <path
             d="M 0 0 L 340 0 L 170 115 Z"
-            fill="#1C1812"
-            stroke="#C9A96E"
+            style={{ fill: 'rgb(var(--panel-rgb))', stroke: 'rgb(var(--gold-rgb))' }}
             strokeWidth="0.4"
             strokeOpacity="0.2"
           />
@@ -202,7 +200,7 @@ function MiniCard() {
     <div className="text-center px-8 py-6">
       <p
         className="text-[10px] tracking-[0.45em] uppercase mb-5 font-sans"
-        style={{ color: 'rgba(201,169,110,0.6)' }}
+        style={{ color: 'rgba(var(--gold-rgb),0.6)' }}
       >
         You Are Invited
       </p>
@@ -210,18 +208,18 @@ function MiniCard() {
         <span className="block whitespace-nowrap">{COUPLE.bride}</span>
         <span
           className="block font-cormorant italic my-1"
-          style={{ color: '#C9A96E', fontSize: 18, fontWeight: 300 }}
+          style={{ color: 'var(--gold)', fontSize: 18, fontWeight: 300 }}
         >
           &amp;
         </span>
         <span className="block whitespace-nowrap">{COUPLE.groom}</span>
       </h2>
       <div className="mt-4 flex items-center justify-center gap-3">
-        <div className="h-px w-10" style={{ background: 'linear-gradient(to right, transparent, rgba(201,169,110,0.4))' }} />
-        <span className="text-xs tracking-[0.25em] font-sans" style={{ color: 'rgba(201,169,110,0.5)' }}>
+        <div className="h-px w-10" style={{ background: 'linear-gradient(to right, transparent, rgba(var(--gold-rgb),0.4))' }} />
+        <span className="text-xs tracking-[0.25em] font-sans" style={{ color: 'rgba(var(--gold-rgb),0.5)' }}>
           November 2026
         </span>
-        <div className="h-px w-10" style={{ background: 'linear-gradient(to left, transparent, rgba(201,169,110,0.4))' }} />
+        <div className="h-px w-10" style={{ background: 'linear-gradient(to left, transparent, rgba(var(--gold-rgb),0.4))' }} />
       </div>
     </div>
   )
@@ -256,7 +254,7 @@ export default function EnvelopeScene({
           key="envelope-scene"
           className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
           style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% 45%, #1a1208 0%, #0A0A0A 100%)',
+            background: 'radial-gradient(ellipse 80% 60% at 50% 45%, rgb(var(--glow-rgb)) 0%, rgb(var(--bg-rgb)) 100%)',
           }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9 }}
@@ -269,7 +267,7 @@ export default function EnvelopeScene({
               height: 400,
               top: '10%',
               left: '5%',
-              background: 'radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(var(--gold-rgb),0.07) 0%, transparent 70%)',
               filter: 'blur(40px)',
             }}
             animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
@@ -282,7 +280,7 @@ export default function EnvelopeScene({
               height: 300,
               bottom: '10%',
               right: '8%',
-              background: 'radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(var(--gold-rgb),0.05) 0%, transparent 70%)',
               filter: 'blur(30px)',
             }}
             animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -307,8 +305,8 @@ export default function EnvelopeScene({
                   className="absolute rounded-sm overflow-hidden"
                   style={{
                     width: 300,
-                    border: '1px solid rgba(201,169,110,0.25)',
-                    background: 'linear-gradient(135deg, #1C1812 0%, #141210 100%)',
+                    border: '1px solid rgba(var(--gold-rgb),0.25)',
+                    background: 'linear-gradient(135deg, rgb(var(--panel-rgb)) 0%, rgb(var(--panel2-rgb)) 100%)',
                   }}
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: -240, opacity: 1 }}
@@ -363,7 +361,7 @@ export default function EnvelopeScene({
               >
                 <motion.span
                   className="font-sans text-[11px] tracking-[0.4em] uppercase"
-                  style={{ color: 'rgba(201,169,110,0.45)' }}
+                  style={{ color: 'rgba(var(--gold-rgb),0.45)' }}
                   animate={{ opacity: [0.3, 0.8, 0.3] }}
                   transition={{ duration: 2.5, repeat: Infinity }}
                 >
