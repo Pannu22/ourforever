@@ -29,6 +29,7 @@ function Invitation() {
   const [opened, setOpened] = useState(false)
   const guestName = useGuestName()
   const audioRef = useRef<AudioHandle>(null)
+  const rsvpEnabled = process.env.NEXT_PUBLIC_RSVP_ENABLED === 'true'
 
   return (
     <main>
@@ -64,9 +65,13 @@ function Invitation() {
 
             <Countdown />
 
-            <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+            {rsvpEnabled && (
+              <>
+                <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
-            <RSVPForm />
+                <RSVPForm />
+              </>
+            )}
 
             <footer className="py-20 px-6 text-center border-t border-gold/10">
               <p className="font-playfair text-2xl text-cream/40 font-normal italic">

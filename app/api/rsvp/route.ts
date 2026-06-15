@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
+  if (process.env.NEXT_PUBLIC_RSVP_ENABLED !== 'true') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
   try {
     const data = await req.json()
     const { name, email, attending, message } = data
