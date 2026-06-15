@@ -23,9 +23,9 @@ export const EVENTS: WeddingEvent[] = [
     id: 'shagan',
     name: 'Shagan',
     subtitle: 'Ceremony',
-    displayDate: '4 November 2026',
+    displayDate: '26 November 2026',
     displayTime: '11:00 AM',
-    isoDate: '2026-11-04T11:00:00+05:30',
+    isoDate: '2026-11-26T11:00:00+05:30',
     venue: 'Venue, City', // UPDATE
     description: 'Begin our journey together with blessings, gifts, and boundless joy shared with those we love.',
   },
@@ -53,9 +53,9 @@ export const EVENTS: WeddingEvent[] = [
     id: 'anand-karaj',
     name: 'Anand Karaj',
     subtitle: 'The Wedding',
-    displayDate: '6 November 2026',
+    displayDate: '28 November 2026',
     displayTime: '10:00 AM',
-    isoDate: '2026-11-06T11:00:00+05:30',
+    isoDate: '2026-11-28T11:00:00+05:30',
     venue: 'Venue, City', // UPDATE
     description: 'In the holy presence of the Guru Granth Sahib, we shall take our sacred vows.',
   },
@@ -64,7 +64,7 @@ export const EVENTS: WeddingEvent[] = [
 // IST (+05:30) offset makes this an absolute instant, so the countdown is
 // identical for guests in every timezone. UPDATE the offset if the wedding
 // is not in India.
-export const WEDDING_DATE_ISO = '2026-11-06T10:00:00+05:30'
+export const WEDDING_DATE_ISO = '2026-11-28T10:00:00+05:30'
 
 // Displayed date range, derived from the events so the landing/share copy can
 // never drift from the event data. Compacts to "26 — 28 November 2026" when the
