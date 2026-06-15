@@ -29,26 +29,26 @@ export const EVENTS: WeddingEvent[] = [
     venue: 'Venue, City', // UPDATE
     description: 'Begin our journey together with blessings, gifts, and boundless joy shared with those we love.',
   },
-  {
-    id: 'dj-night',
-    name: 'DJ Night',
-    subtitle: 'Celebration',
-    displayDate: '4 November 2026',
-    displayTime: '7:00 PM',
-    isoDate: '2026-11-04T19:00:00+05:30',
-    venue: 'Venue, City', // UPDATE
-    description: 'Dance the night away as we celebrate love, music, and the beautiful memories ahead.',
-  },
-  {
-    id: 'jago',
-    name: 'Jago',
-    subtitle: 'Night of Joy',
-    displayDate: '5 November 2026',
-    displayTime: '8:00 PM',
-    isoDate: '2026-11-05T20:00:00+05:30',
-    venue: 'Venue, City', // UPDATE
-    description: 'An evening of song, laughter, and cherished traditions shared with our dearest ones.',
-  },
+  // {
+  //   id: 'dj-night',
+  //   name: 'DJ Night',
+  //   subtitle: 'Celebration',
+  //   displayDate: '4 November 2026',
+  //   displayTime: '7:00 PM',
+  //   isoDate: '2026-11-04T19:00:00+05:30',
+  //   venue: 'Venue, City', // UPDATE
+  //   description: 'Dance the night away as we celebrate love, music, and the beautiful memories ahead.',
+  // },
+  // {
+  //   id: 'jago',
+  //   name: 'Jago',
+  //   subtitle: 'Night of Joy',
+  //   displayDate: '5 November 2026',
+  //   displayTime: '8:00 PM',
+  //   isoDate: '2026-11-05T20:00:00+05:30',
+  //   venue: 'Venue, City', // UPDATE
+  //   description: 'An evening of song, laughter, and cherished traditions shared with our dearest ones.',
+  // },
   {
     id: 'anand-karaj',
     name: 'Anand Karaj',
