@@ -20,7 +20,7 @@ export const EVENTS: WeddingEvent[] = [
     description: 'Begin our journey together with blessings, and boundless joy shared with those we love.',
   },
   {
-    id: 'dj-night',
+    id: 'dj-night1',
     name: 'DJ Night',
     subtitle: 'Celebration',
     displayDate: '26 November 2026',
@@ -51,6 +51,17 @@ export const EVENTS: WeddingEvent[] = [
     venue: 'Gurudwara Shri Guru Singh Sabha, Kharghar',
     mapUrl: 'https://maps.app.goo.gl/fbXuBxNJ5jeQp8gQ9',
     description: 'In the holy presence of the Guru Granth Sahib, we shall take our sacred vows.',
+  },
+  {
+    id: 'dj-night2',
+    name: 'DJ Night',
+    subtitle: 'Celebration',
+    displayDate: '28 November 2026',
+    displayTime: '7:00 PM',
+    isoDate: '2026-11-28T19:00:00+05:30',
+    venue: 'Emerald Heights, Kalamboli',
+    mapUrl: 'https://maps.app.goo.gl/9GYHhx45p8z7nwzL9',
+    description: 'Dance the night away as we celebrate love, music, and the beautiful memories ahead.',
   },
 ]
 
