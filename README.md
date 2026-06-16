@@ -20,6 +20,7 @@ space, and spring-physics motion throughout.
 - **Ambient music** — fades in on tap-to-open, with a floating mute toggle.
 - **Falling petals** — marigold/gold petals drift over the invitation.
 - **Personalized greeting** — share `?to=Name` and the hero greets each guest by name.
+- **Per-function invitations** — give each guest group a private link (`?i=code`) and they see *only* the functions they're invited to. The other functions are resolved away on the server, so they never reach the browser — invisible even in DevTools/View-Source.
 - **Share card** — a dynamic Open Graph image + monogram favicon so links unfurl beautifully on WhatsApp/iMessage/social.
 
 ---
@@ -65,9 +66,22 @@ npm run lint    # lint
 
 ## 🎨 Personalize It
 
-**Almost everything lives in one file: [`lib/events.ts`](lib/events.ts).**
+Content lives in three files:
+
+| File | Holds | Ships to browser? |
+|---|---|---|
+| [`lib/events.ts`](lib/events.ts) | Couple names, families, monogram, `SITE_URL` | Yes (client-safe) |
+| [`lib/catalog.ts`](lib/catalog.ts) | The full `EVENTS` list (all functions) + wedding date | **No — server-only** |
+| [`lib/invites.ts`](lib/invites.ts) | Which guest code can see which functions | **No — server-only** |
+
+> The event catalog is deliberately kept out of `lib/events.ts`. Putting event
+> or invite data in a client-safe file would ship the whole list to every
+> browser and defeat the per-function privacy. Add events in `lib/catalog.ts`
+> and invite codes in `lib/invites.ts`.
 
 ### Names & families
+
+In [`lib/events.ts`](lib/events.ts):
 
 ```ts
 export const COUPLE = {
@@ -81,8 +95,9 @@ export const COUPLE = {
 
 ### Events
 
-Each entry in the `EVENTS` array controls one ceremony card and its RSVP
-checkbox. Update the name, date, time, venue, and description:
+Each entry in the `EVENTS` array in [`lib/catalog.ts`](lib/catalog.ts) controls
+one ceremony card and its RSVP checkbox. Update the name, date, time, venue, and
+description:
 
 ```ts
 {
@@ -97,8 +112,10 @@ checkbox. Update the name, date, time, venue, and description:
 }
 ```
 
-> The countdown targets `WEDDING_DATE_ISO` (the Anand Karaj). Update it if
-> your main ceremony changes.
+> The countdown targets `WEDDING_DATE_ISO` in `lib/catalog.ts` (the Anand
+> Karaj). Update it if your main ceremony changes. For a guest who isn't
+> invited to that ceremony, the countdown automatically falls back to their
+> latest invited function.
 
 ### Page title & description
 
@@ -125,6 +142,49 @@ https://your-domain.com/?to=The+Sharmas  → "Dear The Sharmas,"
 Spaces can be `+` or `%20`. With no `?to=`, the hero shows the standard
 "Together with their families" line. (The name is sanitized and length-capped,
 so a malformed link can't break the page.)
+
+---
+
+## 🔐 Inviting Guests to Specific Functions
+
+Different guest groups can be invited to different functions, and a guest can
+**never** learn which other functions exist or who else was invited. The server
+resolves a guest's allowed functions before any HTML is sent, so non-invited
+functions never reach the browser (not visible in DevTools or View-Source), and
+no guest list is ever rendered.
+
+### Setting it up
+
+In [`lib/invites.ts`](lib/invites.ts), map an opaque code to the function `id`s
+that code may see:
+
+```ts
+export const INVITE_GROUPS: Record<string, string[]> = {
+  k7m2qa: ['shagan', 'anand-karaj'], // close family — both functions
+  p4x9zb: ['anand-karaj'],           // wedding only
+}
+```
+
+- Use **unguessable random codes** (e.g. `k7m2qa`), one per guest group.
+- `id`s must match an event `id` in `lib/catalog.ts`. Unknown ids are ignored.
+- Shown events always follow the catalog's chronological order, not the list order.
+
+Then send each group their personal link (combine with `?to=` as you like):
+
+```
+https://your-domain.com/?i=k7m2qa&to=Bua+Ji   → Shagan + Anand Karaj
+https://your-domain.com/?i=p4x9zb              → Anand Karaj only
+```
+
+### Default behavior
+
+With **no code, or an unknown code**, the site shows the **Shagan only** (and if
+there's no Shagan in the catalog, it falls back to the Anand Karaj). This keeps a
+bare or mistyped link from revealing the other functions.
+
+> ⚠️ Codes go in `lib/invites.ts` (server-only) — **never** in `lib/events.ts`.
+> `events.ts` ships to the browser, so putting the code→function mapping there
+> would expose every code and which functions it unlocks.
 
 ---
 
@@ -184,7 +244,8 @@ link it to the project. The `KV_*` variables are injected automatically.
 ```
 app/
   layout.tsx           Root layout · fonts · metadata
-  page.tsx             Orchestrates the experience (envelope → invitation)
+  page.tsx             Server component: resolves the guest's functions from ?i=
+  Invitation.tsx       Client experience (envelope → invitation), rendered from props
   globals.css          Base styles, shimmer animation, scrollbar
   opengraph-image.tsx  Dynamic share card (1200×630)
   icon.tsx             Dynamic monogram favicon
@@ -198,7 +259,10 @@ components/
   AudioController.tsx  Ambient music + mute toggle
   Petals.tsx           Falling petal overlay
 lib/
-  events.ts            ← All couple/event content + SITE_URL
+  events.ts            Client-safe: couple names, monogram, SITE_URL
+  catalog.ts           Server-only: full EVENTS list + wedding date helpers
+  invites.ts           Server-only: invite codes → which functions they unlock
+  calendar.ts          .ics calendar-event builder
 public/
   audio/ambient.mp3    Your soundtrack (you provide)
 ```
@@ -208,12 +272,13 @@ public/
 ## ✅ Pre-Publish Checklist
 
 - [ ] Update names, families, and monogram in `lib/events.ts`
-- [ ] Update each event's date, time, **venue**, and description
+- [ ] Update each event's date, time, **venue**, and description in `lib/catalog.ts`
+- [ ] Add invite codes for each guest group in `lib/invites.ts`
 - [ ] Update the title/description in `app/layout.tsx`
 - [ ] Add `public/audio/ambient.mp3`
 - [ ] Set `NEXT_PUBLIC_SITE_URL` in Vercel
 - [ ] Link a Vercel KV store for RSVPs
-- [ ] Test a personalized link (`/?to=Name`) and a share preview
+- [ ] Test a personalized link (`/?to=Name`), an invite link (`/?i=code`), and a share preview
 
 ---
 

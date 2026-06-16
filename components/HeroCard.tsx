@@ -2,9 +2,15 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { COUPLE, WEDDING_DATE_RANGE } from '@/lib/events'
+import { COUPLE } from '@/lib/events'
 
-export default function HeroCard({ guestName }: { guestName?: string }) {
+export default function HeroCard({
+  guestName,
+  dateRange,
+}: {
+  guestName?: string
+  dateRange: string
+}) {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -158,7 +164,7 @@ export default function HeroCard({ guestName }: { guestName?: string }) {
             fontWeight: 300,
           }}
         >
-          {WEDDING_DATE_RANGE}
+          {dateRange}
         </motion.p>
 
         {/* Family names */}

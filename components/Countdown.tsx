@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { WEDDING_DATE_ISO, WEDDING_EVENT } from '@/lib/events'
 
 type TimeLeft = {
   days: number
@@ -11,8 +10,8 @@ type TimeLeft = {
   seconds: number
 }
 
-function getTimeLeft(): TimeLeft {
-  const diff = new Date(WEDDING_DATE_ISO).getTime() - Date.now()
+function getTimeLeft(targetIso: string): TimeLeft {
+  const diff = new Date(targetIso).getTime() - Date.now()
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
   return {
     days: Math.floor(diff / 86_400_000),
@@ -81,14 +80,20 @@ function CountUnit({ value, label }: { value: number; label: string }) {
   )
 }
 
-export default function Countdown() {
+export default function Countdown({
+  targetIso,
+  targetEvent,
+}: {
+  targetIso: string
+  targetEvent: { displayDate: string; name: string }
+}) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
 
   useEffect(() => {
-    setTimeLeft(getTimeLeft())
-    const id = setInterval(() => setTimeLeft(getTimeLeft()), 1_000)
+    setTimeLeft(getTimeLeft(targetIso))
+    const id = setInterval(() => setTimeLeft(getTimeLeft(targetIso)), 1_000)
     return () => clearInterval(id)
-  }, [])
+  }, [targetIso])
 
   return (
     <section
@@ -136,7 +141,7 @@ export default function Countdown() {
             animate={{ opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
-            {WEDDING_EVENT.displayDate} · {WEDDING_EVENT.name}
+            {targetEvent.displayDate} · {targetEvent.name}
           </motion.p>
         </motion.div>
       </div>
