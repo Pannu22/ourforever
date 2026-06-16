@@ -15,6 +15,7 @@ export type WeddingEvent = {
   displayTime: string
   isoDate: string
   venue: string
+  mapUrl?: string
   description: string
 }
 
@@ -26,8 +27,9 @@ export const EVENTS: WeddingEvent[] = [
     displayDate: '26 November 2026',
     displayTime: '11:00 AM',
     isoDate: '2026-11-26T11:00:00+05:30',
-    venue: 'Venue, City', // UPDATE
-    description: 'Begin our journey together with blessings, gifts, and boundless joy shared with those we love.',
+    venue: 'Gurudwara Shri Guru Singh Sabha, Kharghar',
+    mapUrl: 'https://maps.app.goo.gl/fbXuBxNJ5jeQp8gQ9',
+    description: 'Begin our journey together with blessings, and boundless joy shared with those we love.',
   },
   // {
   //   id: 'dj-night',
@@ -56,7 +58,8 @@ export const EVENTS: WeddingEvent[] = [
     displayDate: '28 November 2026',
     displayTime: '10:00 AM',
     isoDate: '2026-11-28T11:00:00+05:30',
-    venue: 'Venue, City', // UPDATE
+    venue: 'Gurudwara Shri Guru Singh Sabha, Kharghar',
+    mapUrl: 'https://maps.app.goo.gl/fbXuBxNJ5jeQp8gQ9',
     description: 'In the holy presence of the Guru Granth Sahib, we shall take our sacred vows.',
   },
 ]
