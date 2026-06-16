@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { EVENTS } from '@/lib/events'
+import { type WeddingEvent } from '@/lib/events'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -51,7 +51,7 @@ function Field({
   )
 }
 
-export default function RSVPForm() {
+export default function RSVPForm({ events }: { events: WeddingEvent[] }) {
   const [status, setStatus] = useState<Status>('idle')
   const [form, setForm] = useState({
     name: '',
@@ -177,7 +177,7 @@ export default function RSVPForm() {
                   Events Attending
                 </p>
                 <div className="space-y-3">
-                  {EVENTS.map((event) => {
+                  {events.map((event) => {
                     const checked = form.attending.includes(event.id)
                     return (
                       <label

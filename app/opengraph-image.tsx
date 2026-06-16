@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
-import { COUPLE, WEDDING_DATE_RANGE } from '@/lib/events'
+import { COUPLE } from '@/lib/events'
+import { WEDDING_DATE_RANGE } from '@/lib/catalog'
 
 // WhatsApp / iMessage / social unfurl card.
 // A custom Playfair .ttf can be loaded here later for exact brand type;

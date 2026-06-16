@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { COUPLE, EVENTS, type WeddingEvent } from '@/lib/events'
+import { COUPLE, type WeddingEvent } from '@/lib/events'
 import { buildEventIcs } from '@/lib/calendar'
 
 const EVENT_ICONS: Record<string, string> = {
@@ -10,6 +10,18 @@ const EVENT_ICONS: Record<string, string> = {
   'dj-night': '♪',
   jago: '◈',
   'anand-karaj': '❋',
+}
+
+// Heading copy that adapts to how many days the guest is actually invited to,
+// so a single-function invite never implies the other functions exist.
+const DAY_WORDS = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven']
+
+function celebrationHeading(events: WeddingEvent[]): { count: string; days: string } {
+  const distinctDays = new Set(events.map((e) => e.displayDate)).size
+  return {
+    count: DAY_WORDS[distinctDays] ?? String(distinctDays),
+    days: distinctDays === 1 ? 'Beautiful Day' : 'Beautiful Days',
+  }
 }
 
 function downloadEventIcs(event: WeddingEvent) {
@@ -25,7 +37,15 @@ function downloadEventIcs(event: WeddingEvent) {
   URL.revokeObjectURL(url)
 }
 
-function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
+function EventCard({
+  event,
+  index,
+  total,
+}: {
+  event: WeddingEvent
+  index: number
+  total: number
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -53,7 +73,7 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
           transition={{ type: 'spring', delay: 0.1 }}
         />
         {/* Connecting line (except last item) */}
-        {index < EVENTS.length - 1 && (
+        {index < total - 1 && (
           <motion.div
             className="w-px mt-2 flex-1 min-h-[120px]"
             style={{
@@ -219,7 +239,8 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
   )
 }
 
-export default function EventsTimeline() {
+export default function EventsTimeline({ events }: { events: WeddingEvent[] }) {
+  const heading = celebrationHeading(events)
   return (
     <section className="relative py-28 px-6">
       <div className="max-w-3xl mx-auto">
@@ -241,7 +262,7 @@ export default function EventsTimeline() {
             className="font-playfair text-cream leading-tight"
             style={{ fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 400 }}
           >
-            Three Beautiful Days
+            {heading.count} {heading.days}
             <br />
             <span className="text-shimmer">of Celebration</span>
           </h2>
@@ -249,8 +270,8 @@ export default function EventsTimeline() {
 
         {/* Events */}
         <div>
-          {EVENTS.map((event, i) => (
-            <EventCard key={event.id} event={event} index={i} />
+          {events.map((event, i) => (
+            <EventCard key={event.id} event={event} index={i} total={events.length} />
           ))}
         </div>
       </div>

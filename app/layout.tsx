@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
-import { COUPLE, SITE_URL, WEDDING_DATE_RANGE } from '@/lib/events'
+import { COUPLE, SITE_URL } from '@/lib/events'
+import { WEDDING_DATE_RANGE } from '@/lib/catalog'
 import { DEFAULT_THEME } from '@/lib/themes'
 import './globals.css'
 
