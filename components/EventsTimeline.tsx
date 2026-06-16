@@ -2,13 +2,27 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { EVENTS, type WeddingEvent } from '@/lib/events'
+import { COUPLE, EVENTS, type WeddingEvent } from '@/lib/events'
+import { buildEventIcs } from '@/lib/calendar'
 
 const EVENT_ICONS: Record<string, string> = {
   shagan: '✦',
   'dj-night': '♪',
   jago: '◈',
   'anand-karaj': '❋',
+}
+
+function downloadEventIcs(event: WeddingEvent) {
+  const ics = buildEventIcs(event, `${event.name} — ${COUPLE.monogram}`)
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `${event.id}.ics`
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
 }
 
 function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
@@ -126,21 +140,78 @@ function EventCard({ event, index }: { event: WeddingEvent; index: number }) {
               {event.description}
             </p>
 
-            <div className="flex items-center gap-2" style={{ color: 'rgba(var(--text-rgb),0.25)' }}>
+            {(() => {
+              const Pin = (
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  className="flex-shrink-0"
+                >
+                  <path
+                    d="M6 1C4.067 1 2.5 2.567 2.5 4.5C2.5 7.25 6 11 6 11C6 11 9.5 7.25 9.5 4.5C9.5 2.567 7.933 1 6 1ZM6 6C5.172 6 4.5 5.328 4.5 4.5C4.5 3.672 5.172 3 6 3C6.828 3 7.5 3.672 7.5 4.5C7.5 5.328 6.828 6 6 6Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              )
+              return event.mapUrl ? (
+                <a
+                  href={event.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 transition-colors hover:text-[var(--gold)]"
+                  style={{ color: 'rgba(var(--text-rgb),0.25)' }}
+                >
+                  {Pin}
+                  <span className="font-sans text-xs tracking-wide underline underline-offset-4 decoration-[rgba(var(--text-rgb),0.2)]">
+                    {event.venue} · Directions
+                  </span>
+                </a>
+              ) : (
+                <div className="flex items-center gap-2" style={{ color: 'rgba(var(--text-rgb),0.25)' }}>
+                  {Pin}
+                  <span className="font-sans text-xs tracking-wide">{event.venue}</span>
+                </div>
+              )
+            })()}
+
+            <button
+              type="button"
+              onClick={() => downloadEventIcs(event)}
+              className="mt-5 inline-flex items-center gap-2 rounded-sm border px-4 py-2 font-sans text-xs tracking-wide transition-colors hover:text-[var(--gold)]"
+              style={{
+                borderColor: 'rgba(var(--gold-rgb),0.25)',
+                color: 'rgba(var(--text-rgb),0.55)',
+              }}
+              onMouseEnter={(e) => {
+                ;(e.currentTarget as HTMLButtonElement).style.borderColor =
+                  'rgba(var(--gold-rgb),0.5)'
+              }}
+              onMouseLeave={(e) => {
+                ;(e.currentTarget as HTMLButtonElement).style.borderColor =
+                  'rgba(var(--gold-rgb),0.25)'
+              }}
+            >
               <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
+                width="13"
+                height="13"
+                viewBox="0 0 14 14"
                 fill="none"
                 className="flex-shrink-0"
               >
-                <path
-                  d="M6 1C4.067 1 2.5 2.567 2.5 4.5C2.5 7.25 6 11 6 11C6 11 9.5 7.25 9.5 4.5C9.5 2.567 7.933 1 6 1ZM6 6C5.172 6 4.5 5.328 4.5 4.5C4.5 3.672 5.172 3 6 3C6.828 3 7.5 3.672 7.5 4.5C7.5 5.328 6.828 6 6 6Z"
-                  fill="currentColor"
+                <rect
+                  x="1.5"
+                  y="2.5"
+                  width="11"
+                  height="10"
+                  rx="1.5"
+                  stroke="currentColor"
                 />
+                <path d="M1.5 5.5H12.5M4.5 1V3.5M9.5 1V3.5" stroke="currentColor" />
               </svg>
-              <span className="font-sans text-xs tracking-wide">{event.venue}</span>
-            </div>
+              Add to Calendar
+            </button>
           </div>
         </div>
       </div>
