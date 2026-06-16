@@ -57,7 +57,7 @@ export const EVENTS: WeddingEvent[] = [
     subtitle: 'The Wedding',
     displayDate: '28 November 2026',
     displayTime: '10:00 AM',
-    isoDate: '2026-11-28T11:00:00+05:30',
+    isoDate: '2026-11-28T10:00:00+05:30',
     venue: 'Gurudwara Shri Guru Singh Sabha, Kharghar',
     mapUrl: 'https://maps.app.goo.gl/fbXuBxNJ5jeQp8gQ9',
     description: 'In the holy presence of the Guru Granth Sahib, we shall take our sacred vows.',

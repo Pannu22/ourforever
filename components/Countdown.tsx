@@ -28,11 +28,14 @@ function CountUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-4">
       {/* Ring + number */}
-      <div className="relative flex items-center justify-center">
+      <div
+        className="relative flex items-center justify-center"
+        style={{ width: 'clamp(60px, 19vw, 100px)', height: 'clamp(60px, 19vw, 100px)' }}
+      >
         <svg
           className="absolute"
-          width="100"
-          height="100"
+          width="100%"
+          height="100%"
           viewBox="0 0 100 100"
           fill="none"
         >
