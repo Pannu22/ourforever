@@ -15,11 +15,11 @@ import { EVENTS } from '@/lib/catalog'
 //     p4x9zb: ['anand-karaj'],           // wedding only
 //   }
 export const INVITE_GROUPS: Record<string, string[]> = {
-  all: ['shagan', 'dj-night1', 'jago', 'anand-karaj', 'dj-night2'], // all functions
-  as12as: ['shagan', 'dj-night'], // all functions
+  all: ['shagan', 'jago', 'dj-night1', 'anand-karaj', 'dj-night2'], // all functions
+  as12as: ['shagan', 'dj-night1'], // all functions
   dj3541: ['dj-night1'],
   p4x9zb: ['anand-karaj'],           // wedding only
-  sa1345: ['shagan', 'anand-karaj'],           // wedding only
+  sa1345: ['shagan', 'anand-karaj'],
 }
 
 // Default events shown when there is no code, or the code is unknown: Shagan
