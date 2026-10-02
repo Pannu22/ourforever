@@ -44,3 +44,14 @@ export function buildEventIcs(event: WeddingEvent, title: string): string {
 
   return lines.join('\r\n')
 }
+
+// Browser-only: saves the event as a .ics file the OS hands to its calendar app.
+export function downloadEventIcs(event: WeddingEvent, title: string) {
+  const blob = new Blob([buildEventIcs(event, title)], { type: 'text/calendar;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `${event.id}.ics`
+  link.click()
+  URL.revokeObjectURL(url)
+}
