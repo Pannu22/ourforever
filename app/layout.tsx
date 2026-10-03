@@ -43,7 +43,7 @@ const gurmukhi = Noto_Serif_Gurmukhi({
   display: 'swap',
 })
 
-const title = `${COUPLE.bride} & ${COUPLE.groom} — Our Forever`
+const title = `${COUPLE.groom} & ${COUPLE.bride} — Our Forever`
 const description = `Join us to celebrate our wedding — ${WEDDING_DATE_RANGE}`
 
 export const metadata: Metadata = {

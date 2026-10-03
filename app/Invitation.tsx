@@ -51,8 +51,8 @@ export default function Invitation({
 
       <footer className="py-20 px-6 text-center border-t border-gold/10">
         <p className="font-cormorant text-2xl text-cream/40 font-normal italic">
-          <span className="whitespace-nowrap">{COUPLE.bride}</span> &amp;{' '}
-          <span className="whitespace-nowrap">{COUPLE.groom}</span>
+          <span className="whitespace-nowrap">{COUPLE.groom}</span> &amp;{' '}
+          <span className="whitespace-nowrap">{COUPLE.bride}</span>
         </p>
         <p className="text-cream/20 text-xs tracking-[0.35em] uppercase mt-3 font-sans">With Love · November 2026</p>
       </footer>
