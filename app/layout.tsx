@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
+import { Playfair_Display, Cormorant_Garamond, Inter, Jost, Noto_Serif_Gurmukhi } from 'next/font/google'
 import { COUPLE, SITE_URL } from '@/lib/events'
 import { WEDDING_DATE_RANGE } from '@/lib/catalog'
 import { DEFAULT_THEME } from '@/lib/themes'
 import './globals.css'
+import './invite.css'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -24,6 +25,21 @@ const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400'],
   variable: '--font-inter',
+  display: 'swap',
+})
+
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-jost',
+  display: 'swap',
+})
+
+// For the ੴ (Ik Onkar) glyph
+const gurmukhi = Noto_Serif_Gurmukhi({
+  subsets: ['gurmukhi'],
+  weight: ['500'],
+  variable: '--font-gurmukhi',
   display: 'swap',
 })
 
@@ -51,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme={DEFAULT_THEME}
-      className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}
+      className={`${playfair.variable} ${cormorant.variable} ${inter.variable} ${jost.variable} ${gurmukhi.variable}`}
     >
       <body className="bg-ink text-cream antialiased overflow-x-hidden">
         {children}
