@@ -32,9 +32,9 @@ export default function Icon() {
             letterSpacing: -1,
           }}
         >
-          {COUPLE.bride[0]}
-          <span style={{ fontSize: 18, margin: '0 1px', opacity: 0.8 }}>&</span>
           {COUPLE.groom[0]}
+          <span style={{ fontSize: 18, margin: '0 1px', opacity: 0.8 }}>&</span>
+          {COUPLE.bride[0]}
         </div>
       </div>
     ),

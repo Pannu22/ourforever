@@ -8,7 +8,7 @@ export const COUPLE = {
   groom: 'Narpinder Singh',
   brideFamily: 'The Dhillon Family',
   groomFamily: 'The Pannu Family',
-  monogram: 'H & N',
+  monogram: 'N & H',
 }
 
 export type WeddingEvent = {

@@ -6,7 +6,7 @@ import { WEDDING_DATE_RANGE } from '@/lib/catalog'
 // A custom Playfair .ttf can be loaded here later for exact brand type;
 // next/og's default sans keeps this dependency-free for now.
 export const runtime = 'edge'
-export const alt = `${COUPLE.bride} & ${COUPLE.groom} — Wedding Invitation`
+export const alt = `${COUPLE.groom} & ${COUPLE.bride} — Wedding Invitation`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -58,7 +58,7 @@ export default function OgImage() {
             justifyContent: 'center',
           }}
         >
-          <span style={{ fontSize: 110, fontWeight: 500 }}>{COUPLE.bride}</span>
+          <span style={{ fontSize: 110, fontWeight: 500 }}>{COUPLE.groom}</span>
           <span
             style={{
               fontSize: 70,
@@ -69,7 +69,7 @@ export default function OgImage() {
           >
             &
           </span>
-          <span style={{ fontSize: 110, fontWeight: 500 }}>{COUPLE.groom}</span>
+          <span style={{ fontSize: 110, fontWeight: 500 }}>{COUPLE.bride}</span>
         </div>
 
         {/* Divider */}

@@ -26,7 +26,7 @@ export default function Welcome({ entered, guestName, dateRange }: { entered: bo
           With the blessings of Waheguru Ji
         </p>
         <p className="body w-in" style={{ animationDelay: '1.3s' }}>
-          Together with their families, {COUPLE.brideFamily} and {COUPLE.groomFamily}, request the honour of your presence at the
+          Together with their families, {COUPLE.groomFamily} and {COUPLE.brideFamily}, request the honour of your presence at the
           wedding celebrations of
         </p>
         <h1
@@ -41,9 +41,9 @@ export default function Welcome({ entered, guestName, dateRange }: { entered: bo
             animationDelay: '1.6s',
           }}
         >
-          <span className="shimmer">{COUPLE.bride}</span>
-          <span style={{ fontSize: '.45em', color: '#e6c46e' }}>&amp;</span>
           <span className="shimmer">{COUPLE.groom}</span>
+          <span style={{ fontSize: '.45em', color: '#e6c46e' }}>&amp;</span>
+          <span className="shimmer">{COUPLE.bride}</span>
         </h1>
         <p className="lbl w-in" style={{ marginTop: 8, color: '#f3e3c8', animationDelay: '1.9s' }}>
           {dateRange}
