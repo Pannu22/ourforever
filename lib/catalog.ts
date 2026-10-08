@@ -30,6 +30,18 @@ export const EVENTS: WeddingEvent[] = [
     mapUrl: 'https://maps.app.goo.gl/9GYHhx45p8z7nwzL9',
     description: 'An evening of song, laughter, and cherished traditions shared with our dearest ones.',
   },
+  // Bride-side variants (invite group "bride") — revised dates/venue.
+  {
+    id: 'dj-night1-bride',
+    name: 'DJ Night',
+    subtitle: 'Celebration',
+    displayDate: '26 November 2026',
+    displayTime: '7:00 PM',
+    isoDate: '2026-11-26T19:00:00+05:30',
+    venue: 'Bal Society, Kalamboli',
+    mapUrl: 'https://maps.app.goo.gl/fGS5V9tokrUMRo8W7',
+    description: 'Dance the night away as we celebrate love, music, and the beautiful memories ahead.',
+  },
   {
     id: 'dj-night1',
     name: 'DJ Night',
@@ -40,6 +52,17 @@ export const EVENTS: WeddingEvent[] = [
     venue: 'Emerald Heights, Kalamboli',
     mapUrl: 'https://maps.app.goo.gl/9GYHhx45p8z7nwzL9',
     description: 'Dance the night away as we celebrate love, music, and the beautiful memories ahead.',
+  },
+  {
+    id: 'jago-bride',
+    name: 'Jago',
+    subtitle: 'Night of Joy',
+    displayDate: '27 November 2026',
+    displayTime: '7:00 PM',
+    isoDate: '2026-11-27T19:00:00+05:30',
+    venue: 'Bal Society, Kalamboli',
+    mapUrl: 'https://maps.app.goo.gl/fGS5V9tokrUMRo8W7',
+    description: 'An evening of song, laughter, and cherished traditions shared with our dearest ones.',
   },
   {
     id: 'anand-karaj',
