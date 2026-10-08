@@ -105,6 +105,8 @@ const BY_EVENT: Record<string, keyof typeof SCENES> = {
   shagan: 'shagan',
   jago: 'jago',
   'dj-night1': 'garden',
+  'dj-night1-bride': 'garden',
+  'jago-bride': 'jago',
   'anand-karaj': 'anand',
   'dj-night2': 'tunnel',
 }
