@@ -20,6 +20,7 @@ export const INVITE_GROUPS: Record<string, string[]> = {
   dj3541: ['dj-night1'],
   p4x9zb: ['anand-karaj'],           // wedding only
   sa1345: ['shagan', 'anand-karaj'],
+  bride: ['shagan', 'dj-night1-bride', 'jago-bride', 'anand-karaj'],
 }
 
 // Default events shown when there is no code, or the code is unknown: Shagan
