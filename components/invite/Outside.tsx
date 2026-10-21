@@ -32,9 +32,9 @@ export default function Outside({ targetIso, targetName }: { targetIso: string; 
       className=""
       style={{
         position: 'relative',
-        minHeight: 1000,
+        minHeight: 'min(1000px, 100svh)',
         overflow: 'hidden',
-        padding: '120px 24px 0',
+        padding: 'clamp(64px, 12vw, 120px) 24px 0',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
