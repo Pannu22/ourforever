@@ -18,7 +18,7 @@ function curtainClip(side: 'l' | 'r', pull: number, y: number) {
 }
 
 // Intro: a carved palace doorway whose door is the opening, with a red curtain
-// behind it. Moving over the door peeks at the welcome page; the tassel opens it.
+// behind it. Moving over the door peeks at the welcome page; tapping the tassel opens it.
 export default function Gate({
   monogram,
   onTap,
@@ -99,9 +99,9 @@ export default function Gate({
             <path d="M10 104 L7 146 M16 100 L14 146 M23 100 V146 M30 100 L32 146 M36 104 L39 146" stroke="#8a6526" strokeWidth="1.2" />
             <rect x="9" y="108" width="28" height="4" fill="#b3262e" />
           </svg>
-          <span>Pull to enter</span>
+          <span>Tap to enter</span>
         </button>
-        <p className="gate-hint">Hover or drag over the door to peek inside</p>
+        <p className="gate-hint">Touch the door to peek inside</p>
       </div>
     </div>
   )
